@@ -421,17 +421,16 @@ async function enviarReporteNube(reporteData) {
         }
       }
 
-      loginSubadmin(e) {
-        e.preventDefault();
-        const grupoId = parseInt(document.getElementById('login-sub-grupo').value);
-        const passInput = document.getElementById('login-sub-pass').value;
-        const grupo = this.db.grupos.find(g => String(g.id) === String(grupoId));
-        
-    console.log("Grupo encontrado:", grupo);
-    console.log("Contraseña escrita:", JSON.stringify(passInput));
-    console.log("Contraseña en BD:", JSON.stringify(grupo ? grupo.pass : "No encontrado"));
-        
-        if (grupo && String(grupo.pass).trim() === String(passInput).trim()) {
+loginSubadmin(e) {
+    e.preventDefault();
+    const selectElement = document.getElementById('login-sub-grupo');
+    const grupoId = selectElement ? selectElement.value : '';
+    const passInput = document.getElementById('login-sub-pass').value;
+
+    // Buscamos convirtiendo ambos a String para evitar fallos de tipo (número vs texto)
+    const grupo = this.db.grupos.find(g => String(g.id) === String(grupoId));
+
+    if (grupo && String(grupo.pass).trim() === String(passInput).trim()) {
         this.db.sesion = { rol: 'subadmin', grupo_id: grupoId, nombre: grupo.nombre };
         this.guardarDB();
         this.cambiarVista('panel-sub');
