@@ -426,15 +426,19 @@ async function enviarReporteNube(reporteData) {
         const grupoId = parseInt(document.getElementById('login-sub-grupo').value);
         const passInput = document.getElementById('login-sub-pass').value;
         const grupo = this.db.grupos.find(g => String(g.id) === String(grupoId));
-
-        if(grupo && grupo.pass === passInput) {
-          this.db.sesion = { rol: 'subadmin', grupo_id: grupoId, nombre: grupo.nombre };
-          this.guardarDB();
-          this.cambiarVista('panel-sub');
-        } else {
-          alert('Contraseña incorrecta para este grupo.');
-        }
-      }
+        
+    console.log("Grupo encontrado:", grupo);
+    console.log("Contraseña escrita:", JSON.stringify(passInput));
+    console.log("Contraseña en BD:", JSON.stringify(grupo ? grupo.pass : "No encontrado"));
+        
+        if (grupo && String(grupo.pass).trim() === String(passInput).trim()) {
+        this.db.sesion = { rol: 'subadmin', grupo_id: grupoId, nombre: grupo.nombre };
+        this.guardarDB();
+        this.cambiarVista('panel-sub');
+    } else {
+        alert('Contraseña incorrecta para este grupo.');
+    }
+}
 
       irAlPanel() {
         if(this.db.sesion.rol === 'admin') this.cambiarVista('panel-admin');
