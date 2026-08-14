@@ -425,7 +425,7 @@ async function enviarReporteNube(reporteData) {
         e.preventDefault();
         const grupoId = parseInt(document.getElementById('login-sub-grupo').value);
         const passInput = document.getElementById('login-sub-pass').value;
-        const grupo = this.db.grupos.find(g => g.id === grupoId);
+        const grupo = this.db.grupos.find(g => String(g.id) === String(grupoId));
 
         if(grupo && grupo.pass === passInput) {
           this.db.sesion = { rol: 'subadmin', grupo_id: grupoId, nombre: grupo.nombre };
