@@ -35,19 +35,18 @@
       border-bottom: 3px solid var(--border); 
       padding: 0.8rem 1.2rem; 
       display: flex; 
-      justify-content: space-between; 
+      justify-content: center; 
       align-items: center; 
       position: sticky; 
       top: 0; 
       z-index: 100; 
       box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
-      gap: 0.75rem; 
     }
     
-    .brand { display: flex; align-items: center; gap: 0.75rem; }
-    .brand-logo { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3); }
-    .brand-text h2 { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-    .brand-text h1 { font-size: 1.05rem; color: var(--primary); font-weight: 800; }
+    .brand { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.4rem; }
+    .brand-logo { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3); }
+    .brand-text h2 { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .brand-text h1 { font-size: 1.1rem; color: var(--primary); font-weight: 800; }
 
     main { flex: 1; max-width: 1100px; width: 100%; margin: 1rem auto; padding: 0 0.75rem; display: flex; flex-direction: column; gap: 1rem; }
     .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.2rem; box-shadow: var(--shadow); backdrop-filter: blur(10px); width: 100%; }
@@ -84,7 +83,8 @@
     .calendario-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem; }
     .calendario-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
     .dia-header { font-weight: 600; font-size: 0.7rem; color: var(--text-muted); padding: 0.2rem 0; }
-    .dia-celda { aspect-ratio: 1; background: white; border: 1px solid var(--border); border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0.1rem; font-size: 0.75rem; }
+    .dia-celda { aspect-ratio: 1; background: white; border: 1px solid var(--border); border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0.1rem; font-size: 0.75rem; cursor: pointer; transition: transform 0.1s ease; }
+    .dia-celda:hover { transform: scale(1.03); border-color: var(--primary); }
     .dia-celda-num { font-weight: 700; font-size: 0.8rem; }
     .dia-celda-grupo { font-size: 0.5rem; font-weight: 600; line-height: 1; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
     
@@ -118,10 +118,7 @@
 
     /* MEDIA QUERIES PARA ADAPTABILIDAD MÓVIL PERFECTA */
     @media (max-width: 768px) {
-      header { padding: 0.6rem 0.8rem; flex-direction: column; align-items: stretch; text-align: center; }
-      .brand { justify-content: center; }
-      #auth-menu { display: flex; justify-content: center; gap: 0.5rem; width: 100%; }
-      #auth-menu button { flex: 1; padding: 0.5rem; font-size: 0.8rem; }
+      header { padding: 0.6rem 0.8rem; }
       
       .portada-acciones {
         flex-direction: column;
@@ -137,7 +134,6 @@
       
       .portada-titulo { font-size: 1.3rem; }
       
-      /* Adaptación del panel de admin a móviles */
       .admin-layout { grid-template-columns: 1fr; gap: 0.75rem; }
       .admin-sidebar { display: flex; flex-direction: row; overflow-x: auto; padding-bottom: 0.4rem; width: 100%; gap: 0.4rem; }
       .admin-menu-btn { white-space: nowrap; padding: 0.4rem 0.6rem; background: #f0f9ff; border-radius: 6px; font-size: 0.8rem; }
@@ -157,7 +153,6 @@
         <h1>Horario de Aseo</h1>
       </div>
     </div>
-    <div id="auth-menu"></div>
   </header>
 
   <main>
@@ -218,7 +213,7 @@
       <div class="calendario-header-flex">
         <div>
           <h2 style="font-size: 1.3rem; font-weight: 800;">Calendario de aseos</h2>
-          <p style="font-size: 0.8rem; color: var(--text-muted);">Registro mensual de aseos completados y pendientes.</p>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Toca cualquier día para ver los detalles del aseo.</p>
         </div>
         <button class="btn btn-secundario" onclick="app.cambiarVista('portada')">Volver</button>
       </div>
@@ -318,6 +313,16 @@
     </section>
   </main>
 
+  <!-- MODAL DETALLE DE DÍA (CALENDARIO) -->
+  <div id="modal-detalle-dia" class="oculto" style="position: fixed; inset:0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 1rem;">
+    <div style="background: white; padding: 1.5rem; border-radius: 14px; width: 100%; max-width: 400px; box-shadow: var(--shadow);">
+      <span class="badge-pill" id="modal-dia-badge">Detalle de Aseo</span>
+      <h3 id="modal-dia-titulo" style="font-size: 1.2rem; font-weight: 800; color: var(--primary); margin-bottom: 0.8rem;">Fecha</h3>
+      <div id="modal-dia-contenido" style="font-size: 0.9rem; color: var(--text); margin-bottom: 1.2rem; line-height: 1.4;"></div>
+      <button class="btn" style="width: 100%;" onclick="app.cerrarModalDetalleDia()">Cerrar</button>
+    </div>
+  </div>
+
   <!-- MODAL CREAR / EDITAR GRUPO -->
   <div id="modal-grupo" class="oculto" style="position: fixed; inset:0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 1rem;">
     <div style="background: white; padding: 1.5rem; border-radius: 14px; width: 100%; max-width: 380px; box-shadow: var(--shadow);">
@@ -398,7 +403,6 @@
         this.sincronizarConfigNube();
         this.sincronizarGruposNubeCompleta();
 
-        this.renderAuthMenu();
         this.renderPortada();
       }
 
@@ -445,12 +449,14 @@
           if (!document.getElementById('subtab-historial').classList.contains('oculto')) {
             this.renderHistorial();
           }
+          if (!document.getElementById('vista-calendario').classList.contains('oculto')) {
+            this.renderCalendario();
+          }
         });
       }
 
       guardarDB() {
         localStorage.setItem(DB_KEY, JSON.stringify(this.db));
-        this.renderAuthMenu();
         this.renderPortada();
       }
 
@@ -464,15 +470,6 @@
           input.type = 'password';
           btn.textContent = '👁️';
           btn.style.fontSize = '0.9rem';
-        }
-      }
-
-      renderAuthMenu() {
-        const menu = document.getElementById('auth-menu');
-        if (this.db.sesion) {
-          menu.innerHTML = `<button class="btn" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="app.irAlPanel()">Ir a mi Panel</button>`;
-        } else {
-          menu.innerHTML = `<button class="btn btn-secundario" style="padding: 0.4rem 0.6rem; font-size: 0.75rem;" onclick="app.cambiarVista('login-sub')">Subadmin</button> <button class="btn" style="padding: 0.4rem 0.6rem; font-size: 0.75rem;" onclick="app.cambiarVista('login-admin')">Admin</button>`;
         }
       }
 
@@ -857,30 +854,81 @@
         const primerDia = new Date(this.anioActual, this.mesActual, 1).getDay();
         const totalDias = new Date(this.anioActual, this.mesActual + 1, 0).getDate();
 
-        for (let i = 0; i < primerDia; i++) { grid.innerHTML += `<div class="dia-celda" style="opacity: 0.1;"></div>`; }
+        for (let i = 0; i < primerDia; i++) { grid.innerHTML += `<div class="dia-celda" style="opacity: 0.1; cursor: default;"></div>`; }
         
         for (let dia = 1; dia <= totalDias; dia++) {
           const fechaObj = new Date(this.anioActual, this.mesActual, dia);
           const diaSemana = fechaObj.getDay();
           const fechaStr = `${this.anioActual}-${String(this.mesActual + 1).padStart(2, '0')}-${String(dia).padStart(2, '0')}`;
-          const aprobado = this.db.reportes.find(r => r.fecha === fechaStr && r.estado === 'aprobado');
           
-          if (diaSemana === 6 || diaSemana === 0) {
-            if (aprobado) {
-              const grupoAseo = this.db.grupos.find(g => String(g.id) === String(aprobado.grupo_id));
-              grid.innerHTML += `<div class="dia-celda con-aseo"><span class="dia-celda-num">${dia}</span><span class="dia-celda-grupo">${grupoAseo ? grupoAseo.nombre : ''}</span></div>`;
-            } else {
-              grid.innerHTML += `<div class="dia-celda pendiente-aseo"><span class="dia-celda-num">${dia}</span><span class="dia-celda-grupo">PEND</span></div>`;
+          const reporteDia = this.db.reportes.find(r => r.fecha === fechaStr);
+          
+          let celdaDiv = document.createElement('div');
+          celdaDiv.className = 'dia-celda';
+          
+          if (reporteDia) {
+            const grupoAseo = this.db.grupos.find(g => String(g.id) === String(reporteDia.grupo_id));
+            const nombreGrupoTxt = grupoAseo ? grupoAseo.nombre : 'Grupo';
+            
+            if (reporteDia.estado === 'aprobado') {
+              celdaDiv.classList.add('con-aseo');
+              celdaDiv.innerHTML = `<span class="dia-celda-num">${dia}</span><span class="dia-celda-grupo">${nombreGrupoTxt}</span>`;
+            } else if (reporteDia.estado === 'pendiente') {
+              celdaDiv.classList.add('pendiente-aseo');
+              celdaDiv.innerHTML = `<span class="dia-celda-num">${dia}</span><span class="dia-celda-grupo">PEND</span>`;
             }
+            celdaDiv.onclick = () => this.abrirModalDetalleDia(fechaStr, reporteDia, grupoAseo);
           } else {
-            if (aprobado) {
-              const grupoAseo = this.db.grupos.find(g => String(g.id) === String(aprobado.grupo_id));
-              grid.innerHTML += `<div class="dia-celda con-aseo"><span class="dia-celda-num">${dia}</span><span class="dia-celda-grupo">${grupoAseo ? grupoAseo.nombre : ''}</span></div>`;
+            if (diaSemana === 6 || diaSemana === 0) {
+              celdaDiv.classList.add('pendiente-aseo');
+              celdaDiv.style.opacity = '0.6';
+              celdaDiv.innerHTML = `<span class="dia-celda-num">${dia}</span><span class="dia-celda-grupo">SIN ASEO</span>`;
+              celdaDiv.onclick = () => this.abrirModalDetalleDia(fechaStr, null, null);
             } else {
-              grid.innerHTML += `<div class="dia-celda"><span class="dia-celda-num">${dia}</span></div>`;
+              celdaDiv.innerHTML = `<span class="dia-celda-num">${dia}</span>`;
+              celdaDiv.onclick = () => this.abrirModalDetalleDia(fechaStr, null, null);
             }
           }
+          grid.appendChild(celdaDiv);
         }
+      }
+
+      abrirModalDetalleDia(fechaStr, reporte, grupo) {
+        const modal = document.getElementById('modal-detalle-dia');
+        const badge = document.getElementById('modal-dia-badge');
+        const titulo = document.getElementById('modal-dia-titulo');
+        const contenido = document.getElementById('modal-dia-contenido');
+
+        titulo.textContent = `Fecha: ${fechaStr}`;
+
+        if (reporte) {
+          badge.textContent = reporte.estado === 'aprobado' ? 'Aseo Completado' : 'Reporte Pendiente';
+          badge.style.background = reporte.estado === 'aprobado' ? '#e0f2fe' : '#fef2f2';
+          badge.style.color = reporte.estado === 'aprobado' ? '#0369a1' : '#dc2626';
+
+          let tareasHtml = '';
+          if (reporte.tareas && reporte.tareas.length > 0) {
+            tareasHtml = `<b style="display:block; margin-top:0.5rem; color:var(--text-muted);">Tareas realizadas:</b><ul style="margin-left: 1.2rem; margin-top: 0.2rem;">${reporte.tareas.map(t => `<li>${t}</li>`).join('')}</ul>`;
+          }
+
+          contenido.innerHTML = `
+            <p style="margin-bottom: 0.4rem;"><strong>Grupo:</strong> ${grupo ? grupo.nombre : 'Desconocido'}</p>
+            <p style="margin-bottom: 0.4rem;"><strong>Estado:</strong> <span style="text-transform: uppercase; font-weight: 700; color: ${reporte.estado === 'aprobado' ? '#0284c7' : '#ef4444'};">${reporte.estado}</span></p>
+            ${tareasHtml}
+            <p style="margin-top: 0.6rem;"><strong>Observaciones:</strong> ${reporte.comentarios || 'Sin observaciones registradas.'}</p>
+          `;
+        } else {
+          badge.textContent = 'Información';
+          badge.style.background = '#f1f5f9';
+          badge.style.color = '#64748b';
+          contenido.innerHTML = `<p style="text-align: center; color: var(--text-muted); padding: 1rem 0;">No hay reportes ni registros de aseo para este día.</p>`;
+        }
+
+        modal.classList.remove('oculto');
+      }
+
+      cerrarModalDetalleDia() {
+        document.getElementById('modal-detalle-dia').classList.add('oculto');
       }
 
       cambiarMes(delta) {
