@@ -318,7 +318,23 @@
       </form>
     </div>
   </div>
-
+<!-- Modal Editar Reporte -->
+<div id="modal-editar-reporte" class="oculto" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;">
+    <div style="background: white; padding: 2rem; border-radius: 8px; width: 90%; max-width: 500px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <h3 style="margin-bottom: 1rem; color: var(--primary);">Editar Reporte General</h3>
+        <form onsubmit="app.guardarEdicionReporte(event)">
+            <input type="hidden" id="modal-reporte-id">
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600;">Comentario o Tareas Realizadas:</label>
+                <textarea id="modal-reporte-comentario" rows="4" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px; font-family: inherit;"></textarea>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+                <button type="button" class="btn btn-secundario" onclick="app.cerrarModalEditarReporte()">Cancelar</button>
+                <button type="submit" class="btn">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
   <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, onSnapshot, doc, getDoc, updateDoc, deleteDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -652,7 +668,81 @@ loginSubadmin(e) {
             }
         }
       }
+// --- RENDERIZADO DEL HISTORIAL CON EL BOTÓN DE EDITAR ---
+    renderHistorial() {
+        const cont = document.getElementById('contenedor-historial-admin'); // O el ID que uses en tu HTML para el historial
+        if (!cont) return;
 
+        // Asegúrate de adaptar esta línea al mapeo que ya utilizas para mostrar tu historial general
+        cont.innerHTML = this.db.reportes.map(r => `
+            <div style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <strong>Fecha:</strong> ${r.fecha || ''} <br>
+                        <strong>Grupo:</strong> ${r.grupoNombre || r.grupo || ''}
+                    </div>
+                    <button class="btn btn-secundario" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;" onclick="app.abrirModalEditarReporte('${r.id}')">Editar</button>
+                </div>
+                <div style="margin-top: 0.5rem;">
+                    <p><strong>Comentarios / Tareas:</strong> ${r.comentario || r.tareasExtra || ''}</p>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // --- ABRIR MODAL DE EDICIÓN ---
+    abrirModalEditarReporte(id) {
+        const reporte = this.db.reportes.find(r => r.id === id);
+        if (!reporte) return;
+
+        const inputId = document.getElementById('modal-reporte-id');
+        const inputComentario = document.getElementById('modal-reporte-comentario');
+
+        if (inputId) inputId.value = reporte.id;
+        if (inputComentario) inputComentario.value = reporte.comentario || reporte.tareasExtra || '';
+
+        const modal = document.getElementById('modal-editar-reporte');
+        if (modal) {
+            modal.classList.remove('oculto');
+            modal.style.display = 'flex';
+        }
+    }
+
+    // --- CERRAR MODAL DE EDICIÓN ---
+    cerrarModalEditarReporte() {
+        const modal = document.getElementById('modal-editar-reporte');
+        if (modal) {
+            modal.classList.add('oculto');
+            modal.style.display = 'none';
+        }
+    }
+
+    // --- GUARDAR CAMBIOS EN FIRESTORE ---
+    async guardarEdicionReporte(e) {
+        e.preventDefault();
+        
+        const id = document.getElementById('modal-reporte-id').value;
+        const nuevoComentario = document.getElementById('modal-reporte-comentario').value;
+
+        if (!id) return;
+
+        try {
+            // Referencia directa al documento en la colección "reportes" de Firestore usando su ID único
+            const reporteRef = doc(db, "reportes", String(id));
+            
+            // Actualización del campo en la nube
+            await updateDoc(reporteRef, {
+                comentario: nuevoComentario
+            });
+
+            this.cerrarModalEditarReporte();
+            alert('Reporte actualizado correctamente en la nube.');
+            
+        } catch (error) {
+            console.error("Error al actualizar el reporte en Firestore:", error);
+            alert("Hubo un error al actualizar el reporte.");
+        }
+    }
       renderGruposAdmin() {
         const cont = document.getElementById('contenedor-grupos-admin');
         cont.innerHTML = this.db.grupos.map(g => `
