@@ -6,10 +6,8 @@
   <title>Horario de Aseo – Informática SEMED</title>
 <style>
     :root {
-      /* Paleta de colores en tonos azules y fondo con temática de informática */
       --bg-gradient: linear-gradient(135deg, rgba(127, 175, 246, 0.869) 0%, rgba(14, 84, 195, 0.477) 100%), 
                      url('img/web-development.jpg');
-      --bg-img: url('img/web-development.jpg');
       --card-bg: rgba(255, 255, 255, 0.95);
       --text: #1e293b;
       --text-muted: #0a1c76;
@@ -31,91 +29,121 @@
       flex-direction: column; 
     }
     
-    header { background: rgba(255, 255, 255, 0.369); backdrop-filter: blur(10px); border-bottom: 3px solid var(--border); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 8px 12px rgba(0,0,0,0.05); flex-wrap: wrap; gap: 1rem; }
-    .brand { display: flex; align-items: center; gap: 0.85rem; }
+    header { 
+      background: rgba(255, 255, 255, 0.85); 
+      backdrop-filter: blur(10px); 
+      border-bottom: 3px solid var(--border); 
+      padding: 0.8rem 1.2rem; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      position: sticky; 
+      top: 0; 
+      z-index: 100; 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+      gap: 0.75rem; 
+    }
     
-    /* Logo integrado en la cabecera */
-    .brand-logo { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3); }
-    
-    .brand-text h2 { font-size: 1.1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-    .brand-text h1 { font-size: 1.3rem; color: var(--primary); font-weight: 800; }
+    .brand { display: flex; align-items: center; gap: 0.75rem; }
+    .brand-logo { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3); }
+    .brand-text h2 { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .brand-text h1 { font-size: 1.05rem; color: var(--primary); font-weight: 800; }
 
-    main { flex: 1; max-width: 1100px; width: 100%; margin: 1.5rem auto; padding: 0 1rem; display: flex; flex-direction: column; gap: 1.5rem; }
-    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow); backdrop-filter: blur(10px); }
+    main { flex: 1; max-width: 1100px; width: 100%; margin: 1rem auto; padding: 0 0.75rem; display: flex; flex-direction: column; gap: 1rem; }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.2rem; box-shadow: var(--shadow); backdrop-filter: blur(10px); width: 100%; }
     
-    /* Botones con transiciones fluidas en tonos azules */
-    .btn { background: var(--accent-gradient); color: white; border: none; padding: 0.65rem 1.5rem; border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); text-align: center; }
+    .btn { background: var(--accent-gradient); color: white; border: none; padding: 0.65rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3); text-align: center; display: inline-block; }
     .btn:hover { opacity: 0.95; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(2, 132, 199, 0.4); }
     .btn-secundario { background: transparent; border: 1px solid var(--border); color: var(--text); box-shadow: none; border-radius: 8px; transition: all 0.3s ease; }
-    .btn-secundario:hover { background: rgba(2, 132, 199, 0.05); border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
-    .btn-danger { background: #ef4444; box-shadow: none; transition: all 0.3s ease; }
-    .btn-danger:hover { background: #dc2626; transform: translateY(-2px); }
+    .btn-secundario:hover { background: rgba(2, 132, 199, 0.05); border-color: var(--primary); color: var(--primary); }
+    .btn-danger { background: #ef4444; box-shadow: none; }
+    .btn-danger:hover { background: #dc2626; }
 
     /* PORTADA */
-    .badge-pill { display: inline-block; padding: 0.3rem 1rem; border-radius: 50px; background: rgba(2, 132, 199, 0.1); color: var(--primary); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
-    .portada-titulo { font-size: 2rem; font-weight: 800; color: var(--text); text-align: center; margin-bottom: 1.5rem; }
+    .badge-pill { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 50px; background: rgba(2, 132, 199, 0.1); color: var(--primary); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem; }
+    .portada-titulo { font-size: 1.5rem; font-weight: 800; color: var(--text); text-align: center; margin-bottom: 1.2rem; line-height: 1.2; }
     .portada-titulo span { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .estado-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1.2rem; border-radius: 50px; background: #e0f2fe; color: #0369a1; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem; }
+    .estado-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 50px; background: #e0f2fe; color: #0369a1; font-size: 0.8rem; font-weight: 600; margin-bottom: 1rem; }
+
+    /* CONTENEDOR DE BOTONES SUPERIORES EN PORTADA */
+    .portada-acciones {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .portada-botones-derecha {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
 
     /* CALENDARIO */
-    .calendario-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
-    .calendario-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
-    .dia-header { font-weight: 600; font-size: 0.75rem; color: var(--text-muted); padding: 0.3rem 0; }
-    .dia-celda { aspect-ratio: 1; background: white; border: 1px solid var(--border); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0.2rem; font-size: 0.8rem; transition: all 0.2s ease; }
-    .dia-celda:hover { border-color: var(--primary); }
-    .dia-celda-num { font-weight: 700; font-size: 0.85rem; }
-    .dia-celda-grupo { font-size: 0.55rem; font-weight: 600; line-height: 1.1; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    .calendario-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem; }
+    .calendario-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
+    .dia-header { font-weight: 600; font-size: 0.7rem; color: var(--text-muted); padding: 0.2rem 0; }
+    .dia-celda { aspect-ratio: 1; background: white; border: 1px solid var(--border); border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0.1rem; font-size: 0.75rem; }
+    .dia-celda-num { font-weight: 700; font-size: 0.8rem; }
+    .dia-celda-grupo { font-size: 0.5rem; font-weight: 600; line-height: 1; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
     
-    .dia-celda.con-aseo { background: #0ea5e9; color: white; border: none; box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3); }
-    .dia-celda.pendiente-aseo { background: #f43f5e; color: white; border: none; box-shadow: 0 4px 10px rgba(244, 63, 94, 0.3); }
+    .dia-celda.con-aseo { background: #0ea5e9; color: white; border: none; }
+    .dia-celda.pendiente-aseo { background: #f43f5e; color: white; border: none; }
 
-    .mes-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: white; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; transition: all 0.2s ease; }
-    .mes-btn:hover { background: #f0f9ff; color: var(--primary); border-color: var(--primary); }
+    .mes-btn { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: white; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; }
 
     /* PANEL ADMIN */
-    .admin-layout { display: grid; grid-template-columns: 240px 1fr; gap: 1.5rem; align-items: start; }
+    .admin-layout { display: grid; grid-template-columns: 220px 1fr; gap: 1rem; align-items: start; }
     .admin-sidebar { display: flex; flex-direction: column; gap: 0.3rem; }
-    .admin-menu-btn { text-align: left; background: transparent; border: none; padding: 0.75rem 1rem; border-radius: 8px; font-weight: 500; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 0.75rem; transition: all 0.2s; font-size: 0.9rem; }
+    .admin-menu-btn { text-align: left; background: transparent; border: none; padding: 0.6rem 0.8rem; border-radius: 8px; font-weight: 500; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
     .admin-menu-btn:hover, .admin-menu-btn.activo { background: rgba(2, 132, 199, 0.1); color: var(--primary); font-weight: 600; }
 
-    /* TABLAS RESPONSIVAS */
     .table-container { width: 100%; overflow-x: auto; margin-top: 1rem; border-radius: 8px; border: 1px solid var(--border); background: white; }
-    table { width: 100%; border-collapse: collapse; min-width: 500px; }
-    th, td { padding: 0.75rem 1rem; text-align: left; font-size: 0.85rem; border-bottom: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; min-width: 450px; }
+    th, td { padding: 0.6rem 0.8rem; text-align: left; font-size: 0.8rem; border-bottom: 1px solid var(--border); }
     th { background: #f0f9ff; color: var(--text-muted); font-weight: 600; }
 
-    input[type="text"], input[type="password"], input[type="date"], select, textarea { width: 100%; padding: 0.75rem; margin-top: 0.4rem; margin-bottom: 1.2rem; border: 1px solid var(--border); border-radius: 8px; background: white; color: var(--text); font-size: 0.9rem; transition: all 0.2s ease; }
-    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15); }
-    
-    label { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; display: block; }
+    input[type="text"], input[type="password"], input[type="date"], select, textarea { width: 100%; padding: 0.65rem; margin-top: 0.3rem; margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 8px; background: white; color: var(--text); font-size: 0.85rem; }
+    label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; display: block; }
     .oculto { display: none !important; }
 
-    .checkbox-group { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.4rem; margin-bottom: 1.2rem; background: white; padding: 1rem; border: 1px solid var(--border); border-radius: 8px; }
-    .checkbox-label { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--text); font-weight: 500; cursor: pointer; }
-    .checkbox-label input { width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; margin: 0; }
+    .checkbox-group { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.3rem; margin-bottom: 1rem; background: white; padding: 0.8rem; border: 1px solid var(--border); border-radius: 8px; }
+    .checkbox-label { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text); font-weight: 500; cursor: pointer; }
+    .checkbox-label input { width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; margin: 0; }
     
-    .password-container { position: relative; margin-bottom: 1.2rem; }
+    .password-container { position: relative; margin-bottom: 1rem; }
     .password-container input { margin-bottom: 0; }
-    .toggle-pass-btn { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 1.1rem; color: var(--text-muted); padding: 0; margin-top: 0.2rem; }
+    .toggle-pass-btn { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 0.9rem; color: var(--text-muted); }
 
-    /* MEDIA QUERIES PARA ADAPTABILIDAD MÓVIL (RESPONSIVE) */
+    /* MEDIA QUERIES PARA ADAPTABILIDAD MÓVIL PERFECTA */
     @media (max-width: 768px) {
-      header { padding: 0.75rem 1rem; justify-content: center; text-align: center; }
-      .brand { flex-direction: column; gap: 0.4rem; }
-      .brand-text h1 { font-size: 1.2rem; }
-      .portada-titulo { font-size: 1.6rem; }
+      header { padding: 0.6rem 0.8rem; flex-direction: column; align-items: stretch; text-align: center; }
+      .brand { justify-content: center; }
+      #auth-menu { display: flex; justify-content: center; gap: 0.5rem; width: 100%; }
+      #auth-menu button { flex: 1; padding: 0.5rem; font-size: 0.8rem; }
       
-      /* Cambiar el panel de admin a una sola columna en celulares */
-      .admin-layout { grid-template-columns: 1fr; gap: 1rem; }
-      .admin-sidebar { display: flex; flex-direction: row; overflow-x: auto; padding-bottom: 0.5rem; width: 100%; gap: 0.5rem; }
-      .admin-menu-btn { white-space: nowrap; padding: 0.5rem 0.75rem; background: #f0f9ff; border-radius: 6px; }
+      .portada-acciones {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .portada-botones-derecha {
+        flex-direction: column;
+        width: 100%;
+      }
+      .portada-botones-derecha button {
+        width: 100%;
+      }
       
-      main { margin: 1rem 0.5rem; padding: 0 0.5rem; }
-      .card { padding: 1rem; }
+      .portada-titulo { font-size: 1.3rem; }
       
-      /* Ajuste de tamaños en el calendario para pantallas pequeñas */
-      .dia-celda-num { font-size: 0.75rem; }
-      .dia-celda-grupo { font-size: 0.5rem; }
+      /* Adaptación del panel de admin a móviles */
+      .admin-layout { grid-template-columns: 1fr; gap: 0.75rem; }
+      .admin-sidebar { display: flex; flex-direction: row; overflow-x: auto; padding-bottom: 0.4rem; width: 100%; gap: 0.4rem; }
+      .admin-menu-btn { white-space: nowrap; padding: 0.4rem 0.6rem; background: #f0f9ff; border-radius: 6px; font-size: 0.8rem; }
+      
+      main { margin: 0.5rem auto; padding: 0 0.4rem; }
+      .card { padding: 0.9rem; }
     }
   </style>
 </head>
@@ -123,7 +151,6 @@
 
   <header>
     <div class="brand">
-      <!-- Se incorpora el logo proporcionado -->
       <img src="img/informatica.jpeg" alt="Logo Informática SEMED FDR" class="brand-logo">
       <div class="brand-text">
         <h2>B.T.P. en Informática SEMED</h2>
@@ -136,43 +163,43 @@
   <main>
     <!-- PORTADA PÚBLICA -->
     <section id="vista-portada" class="card" style="text-align: center;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-        <span class="badge-pill">Portal Oficial</span>
-        <div style="display: flex; gap: 0.5rem;">
-          <button class="btn btn-secundario" onclick="app.cambiarVista('login-sub')">👤 Iniciar Sesión Subadmin</button>
-          <button class="btn btn-secundario" onclick="app.cambiarVista('login-admin')">🔑 Acceso Administrador</button>
-          <button class="btn" onclick="app.cambiarVista('calendario')">Ver Calendario</button>
+      <div class="portada-acciones">
+        <span class="badge-pill" style="margin-bottom: 0;">Portal Oficial</span>
+        <div class="portada-botones-derecha">
+          <button class="btn btn-secundario" onclick="app.cambiarVista('login-sub')">👤 Subadmin</button>
+          <button class="btn btn-secundario" onclick="app.cambiarVista('login-admin')">🔑 Admin</button>
+          <button class="btn" onclick="app.cambiarVista('calendario')">📅 Ver Calendario</button>
         </div>
       </div>
       
       <h1 class="portada-titulo">HORARIO DE ASEO<br><span>INFORMÁTICA SEMED</span></h1>
       
-      <div style="background: white; border: 1px solid var(--border); border-radius: 16px; padding: 2rem; max-width: 800px; margin: 0 auto; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+      <div style="background: white; border: 1px solid var(--border); border-radius: 14px; padding: 1.2rem; max-width: 800px; margin: 0 auto; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
         <div class="estado-pill" id="estado-turno-pill">● Turno Activo de Aseo</div>
-        <h3 id="titulo-seccion-actual" style="font-size: 1.25rem; font-weight: 700; color: var(--text);">Cargando sección actual...</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;" id="siguiente-turno-txt"></p>
+        <h3 id="titulo-seccion-actual" style="font-size: 1.1rem; font-weight: 700; color: var(--text);">Cargando sección actual...</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.4rem;" id="siguiente-turno-txt"></p>
       </div>
     </section>
 
     <!-- INICIO DE SESIÓN ADMINISTRADOR -->
-    <section id="vista-login-admin" class="card oculto" style="max-width: 400px; margin: 4rem auto; text-align: center;">
+    <section id="vista-login-admin" class="card oculto" style="max-width: 380px; margin: 2rem auto; text-align: center;">
       <span class="badge-pill">Seguridad</span>
-      <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem;">Contraseña de Administrador</h2>
+      <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1.2rem;">Contraseña de Administrador</h2>
       <form onsubmit="app.verificarLoginAdmin(event)">
         <label style="text-align: left;">Contraseña Maestro</label>
         <div class="password-container">
           <input type="password" id="admin-password-input" placeholder="••••••••" required>
           <button type="button" class="toggle-pass-btn" onclick="app.togglePassword('admin-password-input', this)">👁️</button>
         </div>
-        <button type="submit" class="btn" style="width: 100%; margin-top: 0.5rem;">Entrar al Panel</button>
+        <button type="submit" class="btn" style="width: 100%;">Entrar al Panel</button>
       </form>
-      <button class="btn btn-secundario" style="width: 100%; margin-top: 0.75rem;" onclick="app.cambiarVista('portada')">Cancelar</button>
+      <button class="btn btn-secundario" style="width: 100%; margin-top: 0.6rem;" onclick="app.cambiarVista('portada')">Cancelar</button>
     </section>
 
     <!-- INICIO DE SESIÓN SUBADMINISTRADOR -->
-    <section id="vista-login-sub" class="card oculto" style="max-width: 400px; margin: 4rem auto; text-align: center;">
+    <section id="vista-login-sub" class="card oculto" style="max-width: 380px; margin: 2rem auto; text-align: center;">
       <span class="badge-pill">Subadministradores</span>
-      <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem;">Iniciar Sesión Subadmin</h2>
+      <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1.2rem;">Iniciar Sesión Subadmin</h2>
       <form onsubmit="app.loginSubadmin(event)">
         <label style="text-align: left;">Seleccione su Grupo / Sección</label>
         <select id="login-sub-grupo" required></select>
@@ -181,187 +208,168 @@
           <input type="password" id="login-sub-pass" placeholder="••••••••" required>
           <button type="button" class="toggle-pass-btn" onclick="app.togglePassword('login-sub-pass', this)">👁️</button>
         </div>
-        <button type="submit" class="btn" style="width: 100%; margin-top: 0.5rem;">Iniciar Sesión</button>
+        <button type="submit" class="btn" style="width: 100%;">Iniciar Sesión</button>
       </form>
-      <button class="btn btn-secundario" style="width: 100%; margin-top: 0.75rem;" onclick="app.cambiarVista('portada')">Cancelar</button>
+      <button class="btn btn-secundario" style="width: 100%; margin-top: 0.6rem;" onclick="app.cambiarVista('portada')">Cancelar</button>
     </section>
 
     <!-- CALENDARIO -->
     <section id="vista-calendario" class="card oculto">
       <div class="calendario-header-flex">
         <div>
-          <h2 style="font-size: 1.5rem; font-weight: 800;">Calendario de aseos</h2>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Registro mensual de aseos completados y pendientes por fin de semana.</p>
+          <h2 style="font-size: 1.3rem; font-weight: 800;">Calendario de aseos</h2>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Registro mensual de aseos completados y pendientes.</p>
         </div>
-        <button class="btn btn-secundario" onclick="app.cambiarVista('portada')">Volver al inicio</button>
+        <button class="btn btn-secundario" onclick="app.cambiarVista('portada')">Volver</button>
       </div>
-      <div class="calendario-header-flex" style="background: #f0f9ff; padding: 1rem; border-radius: 12px; border: 1px solid var(--border);">
+      <div class="calendario-header-flex" style="background: #f0f9ff; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--border);">
         <button class="mes-btn" onclick="app.cambiarMes(-1)">❮</button>
-        <h3 id="calendario-mes-anio" style="font-size: 1.1rem; font-weight: 700;">Agosto 2026</h3>
+        <h3 id="calendario-mes-anio" style="font-size: 1rem; font-weight: 700;">Agosto 2026</h3>
         <button class="mes-btn" onclick="app.cambiarMes(1)">❯</button>
       </div>
       <div class="calendario-grid" id="calendario-grid"></div>
     </section>
 
     <!-- PANEL DE ADMINISTRADOR -->
-    <section id="vista-panel-admin" class="card oculto" style="padding: 1.5rem;">
+    <section id="vista-panel-admin" class="card oculto" style="padding: 1rem;">
       <div class="admin-layout">
         <div class="admin-sidebar">
-          <div style="padding: 0.5rem 1rem 1rem 1rem; border-bottom: 1px solid var(--border); margin-bottom: 0.5rem;">
-            <h2 style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted);">PANEL DE ADMINISTRADOR</h2>
-            <h3 style="font-size: 0.95rem; color: var(--primary); font-weight: 700;">Administrador SEMED</h3>
-          </div>
           <button class="admin-menu-btn activo" id="menu-revisar" onclick="app.cambiarTabAdmin('revisar')">📄 Revisar</button>
           <button class="admin-menu-btn" id="menu-historial" onclick="app.cambiarTabAdmin('historial')">📜 Historial</button>
           <button class="admin-menu-btn" id="menu-grupos" onclick="app.cambiarTabAdmin('grupos')">👥 Grupos</button>
           <button class="admin-menu-btn" id="menu-accesos" onclick="app.cambiarTabAdmin('accesos')">🔑 Accesos</button>
           <button class="admin-menu-btn" id="menu-ajustes" onclick="app.cambiarTabAdmin('ajustes')">⚙️ Ajustes</button>
-          <button class="admin-menu-btn" onclick="window.open(location.href, '_blank')">👁️ Visión real</button>
-          <button class="btn btn-secundario" style="margin-top: 1rem; font-size: 0.8rem;" onclick="app.cerrarSesion()">Cerrar sesión</button>
+          <button class="btn btn-secundario" style="margin-top: 0.5rem; font-size: 0.75rem; padding: 0.4rem;" onclick="app.cerrarSesion()">Cerrar sesión</button>
         </div>
 
-        <div style="background: #f8fafc; border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border); min-height: 400px;">
-          
+        <div style="background: #f8fafc; border-radius: 10px; padding: 1rem; border: 1px solid var(--border); min-height: 350px;">
           <!-- REVISAR -->
           <div id="subtab-revisar" class="admin-subtab">
-            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Reportes Pendientes</h3>
+            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem;">Reportes Pendientes</h3>
             <div id="contenedor-pendientes"></div>
           </div>
-
           <!-- HISTORIAL -->
           <div id="subtab-historial" class="admin-subtab oculto">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-              <h3 style="font-size: 1.25rem; font-weight: 700;">Historial General</h3>
-              <button class="btn btn-danger" style="padding: 0.4rem 1rem; font-size: 0.85rem;" onclick="app.limpiarHistorial()">Limpiar Historial</button>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+              <h3 style="font-size: 1.1rem; font-weight: 700;">Historial General</h3>
+              <button class="btn btn-danger" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;" onclick="app.limpiarHistorial()">Limpiar</button>
             </div>
             <div id="contenedor-historial"></div>
           </div>
-
           <!-- GRUPOS -->
           <div id="subtab-grupos" class="admin-subtab oculto">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-              <h3 style="font-size: 1.25rem; font-weight: 700;">Gestión de Grupos</h3>
-              <button class="btn" style="padding: 0.4rem 1rem; font-size: 0.85rem;" onclick="app.abrirModalGrupo()">+ Crear Grupo</button>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+              <h3 style="font-size: 1.1rem; font-weight: 700;">Grupos</h3>
+              <button class="btn" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;" onclick="app.abrirModalGrupo()">+ Crear</button>
             </div>
             <div id="contenedor-grupos-admin"></div>
           </div>
-
-          <!-- ACCESOS / SUBADMINS -->
+          <!-- ACCESOS -->
           <div id="subtab-accesos" class="admin-subtab oculto">
-            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Control de Accesos y Subadmins</h3>
-            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Asigne una contraseña para que cada líder de sección pueda entrar como subadministrador.</p>
+            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">Control de Accesos</h3>
             <div id="contenedor-accesos-sub"></div>
           </div>
-
           <!-- AJUSTES -->
           <div id="subtab-ajustes" class="admin-subtab oculto">
-            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Ajustes del Sistema</h3>
+            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem;">Ajustes</h3>
             <label>Forzar Turno Actual</label>
             <select id="select-forzar-turno" onchange="app.forzarTurno(this.value)"></select>
-            <div style="margin-top: 1.5rem; padding: 1.5rem; background: #ffffff; border-radius: 8px; border: 1px solid var(--border);">
-              <h3 style="margin-bottom: 0.8rem; font-size: 1rem; color: var(--text);">Cambiar Contraseña de Administrador</h3>
-              <div style="display: flex; gap: 0.5rem; align-items: center;">
-                  <input type="password" id="nueva-pass-input" placeholder="Nueva contraseña" style="padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px; font-size: 0.9rem; margin:0;">
-                  <button class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;" onclick="app.ejecutarCambioPassword()">Actualizar</button>
+            <div style="margin-top: 1rem; padding: 1rem; background: #ffffff; border-radius: 8px; border: 1px solid var(--border);">
+              <h3 style="margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text);">Cambiar Contraseña Admin</h3>
+              <div style="display: flex; gap: 0.4rem; align-items: center;">
+                  <input type="password" id="nueva-pass-input" placeholder="Nueva contraseña" style="padding: 0.4rem; margin:0;">
+                  <button class="btn" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="app.ejecutarCambioPassword()">Actualizar</button>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
     <!-- PANEL DE SUBADMINISTRADOR -->
-    <section id="vista-panel-sub" class="card oculto" style="padding: 1.5rem;">
-      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+    <section id="vista-panel-sub" class="card oculto" style="padding: 1.2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 1.2rem;">
         <div>
-          <span class="badge-pill">Panel Subadministrador</span>
-          <h2 id="subadmin-titulo-seccion" style="font-size: 1.25rem; font-weight: 800; color: var(--primary);">Sección: —</h2>
+          <span class="badge-pill">Subadmin</span>
+          <h2 id="subadmin-titulo-seccion" style="font-size: 1.1rem; font-weight: 800; color: var(--primary);">Sección: —</h2>
         </div>
-        <button class="btn btn-secundario" onclick="app.cerrarSesion()">Cerrar sesión</button>
+        <button class="btn btn-secundario" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="app.cerrarSesion()">Salir</button>
       </div>
 
-      <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); max-width: 600px; margin: 0 auto;">
-        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Reportar Realización de Aseo</h3>
+      <div style="background: #f0f9ff; padding: 1.2rem; border-radius: 10px; border: 1px solid var(--border); max-width: 500px; margin: 0 auto;">
+        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.8rem;">Reportar Aseo Realizado</h3>
         <form onsubmit="app.enviarReporteSubadmin(event)">
-          <label>Fecha del Aseo Realizado (Fin de semana)</label>
+          <label>Fecha del Aseo (Fin de semana)</label>
           <input type="date" id="sub-rep-fecha" required>
 
           <label>Tareas Realizadas</label>
           <div class="checkbox-group">
             <label class="checkbox-label"><input type="checkbox" id="tarea-1" checked> Barrido y limpieza general de pisos</label>
-            <label class="checkbox-label"><input type="checkbox" id="tarea-2"> REcoger basura del parque de enfrente del edificio A y alrededores</label>
+            <label class="checkbox-label"><input type="checkbox" id="tarea-2"> Recoger basura del parque de enfrente y alrededores</label>
             <label class="checkbox-label"><input type="checkbox" id="tarea-3" checked> Vaciado de papeleras y botes de basura</label>
             <label class="checkbox-label"><input type="checkbox" id="tarea-4" checked> Limpieza de pasillos del edificio A</label>
           </div>
 
           <label>Comentarios u Observaciones</label>
-          <textarea id="sub-rep-comentarios" placeholder="Detalles de la jornada..." rows="3"></textarea>
-          <button type="submit" class="btn" style="width: 100%;">Enviar Reporte a Revisión</button>
+          <textarea id="sub-rep-comentarios" placeholder="Detalles de la jornada..." rows="2"></textarea>
+          <button type="submit" class="btn" style="width: 100%;">Enviar Reporte</button>
         </form>
       </div>
     </section>
   </main>
 
   <!-- MODAL CREAR / EDITAR GRUPO -->
-  <div id="modal-grupo" class="oculto" style="position: fixed; inset:0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 1000;">
-    <div style="background: white; padding: 2rem; border-radius: 16px; width: 100%; max-width: 400px; box-shadow: var(--shadow);">
-      <h3 id="modal-grupo-titulo" style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">Crear Grupo</h3>
+  <div id="modal-grupo" class="oculto" style="position: fixed; inset:0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 1rem;">
+    <div style="background: white; padding: 1.5rem; border-radius: 14px; width: 100%; max-width: 380px; box-shadow: var(--shadow);">
+      <h3 id="modal-grupo-titulo" style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem;">Crear Grupo</h3>
       <form id="form-grupo-modal" onsubmit="app.guardarGrupo(event)">
         <input type="hidden" id="modal-grupo-id">
         <label>Nombre del Grupo / Sección</label>
         <input type="text" id="modal-grupo-nombre" placeholder="Ej: DÉCIMO SECCIÓN '3'" required>
-        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+        <div style="display: flex; gap: 0.7rem; margin-top: 0.8rem;">
           <button type="submit" class="btn" style="flex: 1;">Guardar</button>
           <button type="button" class="btn btn-secundario" style="flex: 1;" onclick="app.cerrarModalGrupo()">Cancelar</button>
         </div>
       </form>
     </div>
   </div>
-<!-- Modal Editar Reporte -->
-<div id="modal-editar-reporte" class="oculto" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;">
-    <div style="background: white; padding: 2rem; border-radius: 8px; width: 90%; max-width: 500px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        <h3 style="margin-bottom: 1rem; color: var(--primary);">Editar Reporte General</h3>
-        <form onsubmit="app.guardarEdicionReporte(event)">
-            <input type="hidden" id="modal-reporte-id">
-            <div style="margin-bottom: 1rem;">
-                <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600;">Comentario o Tareas Realizadas:</label>
-                <textarea id="modal-reporte-comentario" rows="4" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px; font-family: inherit;"></textarea>
-            </div>
-            <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
-                <button type="button" class="btn btn-secundario" onclick="app.cerrarModalEditarReporte()">Cancelar</button>
-                <button type="submit" class="btn">Guardar Cambios</button>
-            </div>
-        </form>
-    </div>
-</div>
+
+  <!-- Modal Editar Reporte -->
+  <div id="modal-editar-reporte" class="oculto" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; padding: 1rem;">
+      <div style="background: white; padding: 1.5rem; border-radius: 10px; width: 100%; max-width: 450px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <h3 style="margin-bottom: 0.8rem; color: var(--primary); font-size: 1.1rem;">Editar Reporte General</h3>
+          <form onsubmit="app.guardarEdicionReporte(event)">
+              <input type="hidden" id="modal-reporte-id">
+              <div style="margin-bottom: 0.8rem;">
+                  <label style="display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 600;">Comentario o Tareas:</label>
+                  <textarea id="modal-reporte-comentario" rows="3" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border); border-radius: 6px; font-family: inherit; font-size: 0.85rem;"></textarea>
+              </div>
+              <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+                  <button type="button" class="btn btn-secundario" onclick="app.cerrarModalEditarReporte()">Cancelar</button>
+                  <button type="submit" class="btn">Guardar</button>
+              </div>
+          </form>
+      </div>
+  </div>
+
   <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, onSnapshot, doc, getDoc, updateDoc, deleteDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, onSnapshot, doc, getDoc, updateDoc, deleteDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-const DB_KEY = 'semed_aseo_db_v12';
+    const DB_KEY = 'semed_aseo_db_v12';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyC3V0RRQxFLuev2ohwGolylUoWCPXZ3_R4",
-  authDomain: "aseo-semed.firebaseapp.com",
-  projectId: "aseo-semed",
-  storageBucket: "aseo-semed.firebasestorage.app",
-  messagingSenderId: "1053610192031",
-  appId: "1:1053610192031:web:ffb2465d4ce610c10a46aa",
-  measurementId: "G-GQ8C4W3FYT"
-};
+    const firebaseConfig = {
+    apiKey: "AIzaSyC3V0RRQxFLuev2ohwGolylUoWCPXZ3_R4",
+    authDomain: "aseo-semed.firebaseapp.com",
+    projectId: "aseo-semed",
+    storageBucket: "aseo-semed.firebasestorage.app",
+    messagingSenderId: "1053610192031",
+    appId: "1:1053610192031:web:ffb2465d4ce610c10a46aa",
+    measurementId: "G-GQ8C4W3FYT"
+    };
 
-const firebaseApp = initializeApp(firebaseConfig);
-const db = getFirestore(firebaseApp);
-
-async function enviarReporteNube(reporteData) {
-  try {
-    await addDoc(collection(db, "reportes"), reporteData);
-    console.log("Reporte guardado en la nube con éxito");
-  } catch (e) {
-    console.error("Error al guardar: ", e);
-  }
-}
+    const firebaseApp = initializeApp(firebaseConfig);
+    const db = getFirestore(firebaseApp);
 
     class SemedApp {
       constructor() {
@@ -390,13 +398,10 @@ async function enviarReporteNube(reporteData) {
         this.sincronizarConfigNube();
         this.sincronizarGruposNube();
 
-        // Aseguramos que la interfaz refleje el estado inicial (auth-menu, portada)
         this.renderAuthMenu();
         this.renderPortada();
       }
 
-      // Mantiene la contraseña de administrador sincronizada en tiempo real
-      // con Firestore, para que funcione igual en cualquier dispositivo/navegador.
       sincronizarConfigNube() {
         const configRef = doc(db, "config", "ajustes_admin");
         onSnapshot(configRef, (snap) => {
@@ -409,8 +414,6 @@ async function enviarReporteNube(reporteData) {
         });
       }
 
-      // Mantiene las contraseñas de los grupos (subadmins) sincronizadas en
-      // tiempo real con Firestore, para que funcionen en cualquier dispositivo.
       sincronizarGruposNube() {
         const gruposRef = collection(db, "grupos");
         onSnapshot(gruposRef, (snapshot) => {
@@ -422,7 +425,6 @@ async function enviarReporteNube(reporteData) {
             }
           });
           this.guardarLocal();
-          // Si la vista de accesos está abierta, la refrescamos
           const contAccesos = document.getElementById('contenedor-accesos-sub');
           if (contAccesos && !document.getElementById('vista-panel-admin').classList.contains('oculto')) {
             this.renderAccesosSub();
@@ -432,8 +434,6 @@ async function enviarReporteNube(reporteData) {
         });
       }
 
-      // Guarda solo en localStorage, sin re-renderizar toda la UI
-      // (evita ciclos de render innecesarios al llegar datos de Firestore)
       guardarLocal() {
         localStorage.setItem(DB_KEY, JSON.stringify(this.db));
       }
@@ -443,6 +443,9 @@ async function enviarReporteNube(reporteData) {
         onSnapshot(q, (snapshot) => {
           this.db.reportes = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
           this.renderPendientes();
+          if (!document.getElementById('subtab-historial').classList.contains('oculto')) {
+            this.renderHistorial();
+          }
         });
       }
 
@@ -457,20 +460,20 @@ async function enviarReporteNube(reporteData) {
         if (input.type === 'password') {
           input.type = 'text';
           btn.textContent = 'ocultar';
-          btn.style.fontSize = '0.75rem';
+          btn.style.fontSize = '0.7rem';
         } else {
           input.type = 'password';
           btn.textContent = '👁️';
-          btn.style.fontSize = '1.1rem';
+          btn.style.fontSize = '0.9rem';
         }
       }
 
       renderAuthMenu() {
         const menu = document.getElementById('auth-menu');
         if (this.db.sesion) {
-          menu.innerHTML = `<button class="btn" onclick="app.irAlPanel()">Ir a mi Panel</button>`;
+          menu.innerHTML = `<button class="btn" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="app.irAlPanel()">Ir a mi Panel</button>`;
         } else {
-          menu.innerHTML = `<button class="btn btn-secundario" onclick="app.cambiarVista('login-sub')">Subadmin</button> <button class="btn" onclick="app.cambiarVista('login-admin')">Admin</button>`;
+          menu.innerHTML = `<button class="btn btn-secundario" style="padding: 0.4rem 0.6rem; font-size: 0.75rem;" onclick="app.cambiarVista('login-sub')">Subadmin</button> <button class="btn" style="padding: 0.4rem 0.6rem; font-size: 0.75rem;" onclick="app.cambiarVista('login-admin')">Admin</button>`;
         }
       }
 
@@ -487,23 +490,22 @@ async function enviarReporteNube(reporteData) {
         }
       }
 
-loginSubadmin(e) {
-    e.preventDefault();
-    const selectElement = document.getElementById('login-sub-grupo');
-    const grupoId = selectElement ? selectElement.value : '';
-    const passInput = document.getElementById('login-sub-pass').value;
+      loginSubadmin(e) {
+        e.preventDefault();
+        const selectElement = document.getElementById('login-sub-grupo');
+        const grupoId = selectElement ? selectElement.value : '';
+        const passInput = document.getElementById('login-sub-pass').value;
 
-    // Buscamos convirtiendo ambos a String para evitar fallos de tipo (número vs texto)
-    const grupo = this.db.grupos.find(g => String(g.id) === String(grupoId));
+        const grupo = this.db.grupos.find(g => String(g.id) === String(grupoId));
 
-    if (grupo && String(grupo.pass).trim() === String(passInput).trim()) {
-        this.db.sesion = { rol: 'subadmin', grupo_id: grupoId, nombre: grupo.nombre };
-        this.guardarDB();
-        this.cambiarVista('panel-sub');
-    } else {
-        alert('Contraseña incorrecta para este grupo.');
-    }
-}
+        if (grupo && String(grupo.pass).trim() === String(passInput).trim()) {
+            this.db.sesion = { rol: 'subadmin', grupo_id: grupoId, nombre: grupo.nombre };
+            this.guardarDB();
+            this.cambiarVista('panel-sub');
+        } else {
+            alert('Contraseña incorrecta para este grupo.');
+        }
+      }
 
       irAlPanel() {
         if(this.db.sesion.rol === 'admin') this.cambiarVista('panel-admin');
@@ -580,25 +582,25 @@ loginSubadmin(e) {
         const cont = document.getElementById('contenedor-pendientes');
         const pendientes = this.db.reportes.filter(r => r.estado === 'pendiente');
         if (pendientes.length === 0) {
-          cont.innerHTML = '<p style="color: var(--text-muted); font-size: 0.9rem;">No hay reportes pendientes.</p>';
+          cont.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No hay reportes pendientes.</p>';
           return;
         }
-        cont.innerHTML = `<table><tr><th>Fecha</th><th>Grupo</th><th>Tareas / Observaciones</th><th>Acciones</th></tr>` +
+        cont.innerHTML = `<div class="table-container"><table><tr><th>Fecha</th><th>Grupo</th><th>Detalles</th><th>Acciones</th></tr>` +
           pendientes.map(r => {
-            const g = this.db.grupos.find(gr => gr.id === r.grupo_id);
-            const tareasHtml = r.tareas ? `<ul style="margin-left: 1rem; font-size: 0.85rem;">${r.tareas.map(t => `<li>${t}</li>`).join('')}</ul>` : '';
+            const g = this.db.grupos.find(gr => gr.id == r.grupo_id);
+            const tareasHtml = r.tareas ? `<ul style="margin-left: 1rem; font-size: 0.8rem;">${r.tareas.map(t => `<li>${t}</li>`).join('')}</ul>` : '';
             return `<tr>
               <td>${r.fecha}</td>
               <td>${g ? g.nombre : ''}</td>
-              <td>${tareasHtml} <div style="margin-top: 0.3rem; color: var(--text-muted); font-size: 0.85rem;">${r.comentarios || ''}</div></td>
+              <td>${tareasHtml} <div style="margin-top: 0.2rem; color: var(--text-muted); font-size: 0.8rem;">${r.comentarios || ''}</div></td>
               <td>
-                <div style="display: flex; gap: 0.4rem;">
-                  <button class="btn" style="padding:0.3rem 0.8rem; font-size:0.8rem;" onclick="app.aprobarReporte('${r.id}')">Aprobar</button>
-                  <button class="btn btn-danger" style="padding:0.3rem 0.8rem; font-size:0.8rem;" onclick="app.rechazarReporte('${r.id}')">Rechazar</button>
+                <div style="display: flex; gap: 0.3rem; flex-wrap: wrap;">
+                  <button class="btn" style="padding:0.2rem 0.5rem; font-size:0.75rem;" onclick="app.aprobarReporte('${r.id}')">Aprobar</button>
+                  <button class="btn btn-danger" style="padding:0.2rem 0.5rem; font-size:0.75rem;" onclick="app.rechazarReporte('${r.id}')">Rechazar</button>
                 </div>
               </td>
             </tr>`;
-          }).join('') + `</table>`;
+          }).join('') + `</table></div>`;
       }
 
       async aprobarReporte(id) {
@@ -608,7 +610,7 @@ loginSubadmin(e) {
                 const reporteRef = doc(db, "reportes", id);
                 await updateDoc(reporteRef, { estado: 'aprobado' });
 
-                const idx = this.db.grupos.findIndex(g => g.id === rep.grupo_id);
+                const idx = this.db.grupos.findIndex(g => g.id == rep.grupo_id);
                 if (idx !== -1) {
                     const siguiente = this.db.grupos[(idx + 1) % this.db.grupos.length];
                     this.db.config.grupo_actual_id = siguiente.id;
@@ -623,7 +625,7 @@ loginSubadmin(e) {
       }
 
       async rechazarReporte(id) {
-        if (confirm('¿Está seguro de rechazar este reporte? Se eliminará de la lista para que puedan reenviarlo corregido.')) {
+        if (confirm('¿Está seguro de rechazar este reporte?')) {
             try {
                 await deleteDoc(doc(db, "reportes", id));
                 alert('Reporte rechazado y eliminado.');
@@ -638,119 +640,70 @@ loginSubadmin(e) {
         const cont = document.getElementById('contenedor-historial');
         const aprobados = this.db.reportes.filter(r => r.estado === 'aprobado');
         if (aprobados.length === 0) {
-          cont.innerHTML = '<p style="color: var(--text-muted); font-size: 0.9rem;">No hay registros aprobados en el historial.</p>';
+          cont.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No hay registros aprobados.</p>';
           return;
         }
-        cont.innerHTML = `<table><tr><th>Fecha</th><th>Grupo</th><th>Tareas y Comentarios</th></tr>` +
+        cont.innerHTML = `<div class="table-container"><table><tr><th>Fecha</th><th>Grupo</th><th>Detalles</th><th>Acciones</th></tr>` +
           aprobados.map(r => {
-            const g = this.db.grupos.find(gr => gr.id === r.grupo_id);
-            const tareasHtml = r.tareas ? `<ul style="margin-left: 1rem; font-size: 0.85rem;">${r.tareas.map(t => `<li>${t}</li>`).join('')}</ul>` : '';
+            const g = this.db.grupos.find(gr => gr.id == r.grupo_id);
+            const tareasHtml = r.tareas ? `<ul style="margin-left: 1rem; font-size: 0.8rem;">${r.tareas.map(t => `<li>${t}</li>`).join('')}</ul>` : '';
             return `<tr>
               <td>${r.fecha}</td>
               <td>${g ? g.nombre : ''}</td>
-              <td>${tareasHtml} <div style="margin-top: 0.3rem; color: var(--text-muted); font-size: 0.85rem;">${r.comentarios || '—'}</div></td>
+              <td>${tareasHtml} <div style="margin-top: 0.2rem; color: var(--text-muted); font-size: 0.8rem;">${r.comentarios || '—'}</div></td>
+              <td>
+                <button class="btn btn-secundario" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;" onclick="app.abrirModalEditarReporte('${r.id}')">Editar</button>
+              </td>
             </tr>`;
-          }).join('') + `</table>`;
+          }).join('') + `</table></div>`;
       }
 
       async limpiarHistorial() {
-        if (confirm('¿Está seguro de limpiar todo el historial de reportes aprobados? Esta acción no se puede deshacer.')) {
+        if (confirm('¿Desea limpiar todo el historial aprobado?')) {
             try {
                 const aprobados = this.db.reportes.filter(r => r.estado === 'aprobado');
-                const promesasBorrado = aprobados.map(r => 
-                    deleteDoc(doc(db, "reportes", r.id))
-                );
+                const promesasBorrado = aprobados.map(r => deleteDoc(doc(db, "reportes", r.id)));
                 await Promise.all(promesasBorrado);
-                alert('Historial limpiado correctamente de la nube.');
+                alert('Historial limpiado correctamente.');
             } catch (error) {
-                console.error("Error al limpiar el historial: ", error);
-                alert("Hubo un error al limpiar el historial.");
+                console.error("Error:", error);
             }
         }
       }
-// --- RENDERIZADO DEL HISTORIAL CON EL BOTÓN DE EDITAR ---
-    renderHistorial() {
-        const cont = document.getElementById('contenedor-historial-admin'); // O el ID que uses en tu HTML para el historial
-        if (!cont) return;
 
-        // Asegúrate de adaptar esta línea al mapeo que ya utilizas para mostrar tu historial general
-        cont.innerHTML = this.db.reportes.map(r => `
-            <div style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                    <div>
-                        <strong>Fecha:</strong> ${r.fecha || ''} <br>
-                        <strong>Grupo:</strong> ${r.grupoNombre || r.grupo || ''}
-                    </div>
-                    <button class="btn btn-secundario" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;" onclick="app.abrirModalEditarReporte('${r.id}')">Editar</button>
-                </div>
-                <div style="margin-top: 0.5rem;">
-                    <p><strong>Comentarios / Tareas:</strong> ${r.comentario || r.tareasExtra || ''}</p>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    // --- ABRIR MODAL DE EDICIÓN ---
-    abrirModalEditarReporte(id) {
+      abrirModalEditarReporte(id) {
         const reporte = this.db.reportes.find(r => r.id === id);
         if (!reporte) return;
+        document.getElementById('modal-reporte-id').value = reporte.id;
+        document.getElementById('modal-reporte-comentario').value = reporte.comentarios || '';
+        document.getElementById('modal-editar-reporte').classList.remove('oculto');
+      }
 
-        const inputId = document.getElementById('modal-reporte-id');
-        const inputComentario = document.getElementById('modal-reporte-comentario');
+      cerrarModalEditarReporte() {
+        document.getElementById('modal-editar-reporte').classList.add('oculto');
+      }
 
-        if (inputId) inputId.value = reporte.id;
-        if (inputComentario) inputComentario.value = reporte.comentario || reporte.tareasExtra || '';
-
-        const modal = document.getElementById('modal-editar-reporte');
-        if (modal) {
-            modal.classList.remove('oculto');
-            modal.style.display = 'flex';
-        }
-    }
-
-    // --- CERRAR MODAL DE EDICIÓN ---
-    cerrarModalEditarReporte() {
-        const modal = document.getElementById('modal-editar-reporte');
-        if (modal) {
-            modal.classList.add('oculto');
-            modal.style.display = 'none';
-        }
-    }
-
-    // --- GUARDAR CAMBIOS EN FIRESTORE ---
-    async guardarEdicionReporte(e) {
+      async guardarEdicionReporte(e) {
         e.preventDefault();
-        
         const id = document.getElementById('modal-reporte-id').value;
         const nuevoComentario = document.getElementById('modal-reporte-comentario').value;
-
-        if (!id) return;
-
         try {
-            // Referencia directa al documento en la colección "reportes" de Firestore usando su ID único
-            const reporteRef = doc(db, "reportes", String(id));
-            
-            // Actualización del campo en la nube
-            await updateDoc(reporteRef, {
-                comentario: nuevoComentario
-            });
-
+            await updateDoc(doc(db, "reportes", String(id)), { comentarios: nuevoComentario });
             this.cerrarModalEditarReporte();
-            alert('Reporte actualizado correctamente en la nube.');
-            
+            alert('Reporte actualizado correctamente.');
         } catch (error) {
-            console.error("Error al actualizar el reporte en Firestore:", error);
-            alert("Hubo un error al actualizar el reporte.");
+            console.error("Error:", error);
         }
-    }
+      }
+
       renderGruposAdmin() {
         const cont = document.getElementById('contenedor-grupos-admin');
         cont.innerHTML = this.db.grupos.map(g => `
-          <div style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-            <h4 style="font-weight: 700; color: var(--primary);">${g.nombre}</h4>
-            <div style="display: flex; gap: 0.5rem;">
-              <button class="btn btn-secundario" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;" onclick="app.abrirModalGrupo('${g.id}')">Editar</button>
-              <button class="btn btn-danger" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;" onclick="app.eliminarGrupo('${g.id}')">Eliminar</button>
+          <div style="background: white; padding: 0.8rem; border-radius: 8px; margin-bottom: 0.8rem; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;">
+            <h4 style="font-weight: 700; color: var(--primary); font-size: 0.9rem;">${g.nombre}</h4>
+            <div style="display: flex; gap: 0.4rem;">
+              <button class="btn btn-secundario" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;" onclick="app.abrirModalGrupo('${g.id}')">Editar</button>
+              <button class="btn btn-danger" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;" onclick="app.eliminarGrupo('${g.id}')">Eliminar</button>
             </div>
           </div>
         `).join('');
@@ -759,8 +712,6 @@ loginSubadmin(e) {
       abrirModalGrupo(id = null) {
         const modal = document.getElementById('modal-grupo');
         modal.classList.remove('oculto');
-        modal.style.display = 'flex';
-        
         if(id) {
           const g = this.db.grupos.find(item => item.id == id);
           document.getElementById('modal-grupo-titulo').textContent = 'Editar Grupo';
@@ -774,16 +725,13 @@ loginSubadmin(e) {
       }
 
       cerrarModalGrupo() {
-        const modal = document.getElementById('modal-grupo');
-        modal.classList.add('oculto');
-        modal.style.display = 'none';
+        document.getElementById('modal-grupo').classList.add('oculto');
       }
 
       guardarGrupo(e) {
         e.preventDefault();
         const id = document.getElementById('modal-grupo-id').value;
         const nombre = document.getElementById('modal-grupo-nombre').value;
-
         if(id) {
           const g = this.db.grupos.find(item => item.id == id);
           if(g) g.nombre = nombre;
@@ -802,7 +750,7 @@ loginSubadmin(e) {
           return;
         }
         if(confirm('¿Desea eliminar este grupo?')) {
-          this.db.grupos = this.db.grupos.filter(g => g.id !== id);
+          this.db.grupos = this.db.grupos.filter(g => g.id != id);
           this.guardarDB();
           this.renderGruposAdmin();
         }
@@ -811,17 +759,14 @@ loginSubadmin(e) {
       renderAccesosSub() {
         const cont = document.getElementById('contenedor-accesos-sub');
         cont.innerHTML = this.db.grupos.map(g => `
-          <div style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-            <div>
-              <h4 style="font-weight: 700; color: var(--primary);">${g.nombre}</h4>
-              <span style="font-size: 0.8rem; color: var(--text-muted);">Contraseña actual: <b>${g.pass}</b></span>
-            </div>
+          <div style="background: white; padding: 0.8rem; border-radius: 8px; margin-bottom: 0.8rem; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.5rem;">
+            <h4 style="font-weight: 700; color: var(--primary); font-size: 0.85rem;">${g.nombre}</h4>
             <div style="display: flex; gap: 0.5rem; align-items: center;">
-              <div class="password-container" style="margin: 0; width: 140px;">
-                <input type="password" id="pass-grupo-${g.id}" value="${g.pass}" style="margin:0; padding: 0.4rem;" placeholder="Nueva pass">
-                <button type="button" class="toggle-pass-btn" style="font-size: 0.85rem;" onclick="app.togglePassword('pass-grupo-${g.id}', this)">👁️</button>
+              <div class="password-container" style="margin: 0; flex: 1;">
+                <input type="password" id="pass-grupo-${g.id}" value="${g.pass}" style="margin:0; padding: 0.4rem; font-size: 0.8rem;" placeholder="Nueva pass">
+                <button type="button" class="toggle-pass-btn" style="font-size: 0.8rem;" onclick="app.togglePassword('pass-grupo-${g.id}', this)">👁️</button>
               </div>
-              <button class="btn" style="padding: 0.4rem 1rem; font-size: 0.8rem;" onclick="app.actualizarPassGrupo('${g.id}')">Guardar</button>
+              <button class="btn" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;" onclick="app.actualizarPassGrupo('${g.id}')">Guardar</button>
             </div>
           </div>
         `).join('');
@@ -830,39 +775,23 @@ loginSubadmin(e) {
       async actualizarPassGrupo(id) {
         const input = document.getElementById(`pass-grupo-${id}`);
         const nuevaPass = input ? input.value.trim() : '';
-
-        if (!nuevaPass) {
-            alert('Por favor, ingresa una contraseña.');
-            return;
-        }
-
+        if (!nuevaPass) { alert('Ingrese una contraseña.'); return; }
         const g = this.db.grupos.find(item => item.id == id);
         if (g) {
             try {
-                const grupoRef = doc(db, "grupos", String(id));
-                await setDoc(grupoRef, { 
-                    id: String(id),
-                    nombre: g.nombre,
-                    pass: nuevaPass 
-                }, { merge: true });
-
+                await setDoc(doc(db, "grupos", String(id)), { id: String(id), nombre: g.nombre, pass: nuevaPass }, { merge: true });
                 g.pass = nuevaPass;
                 this.guardarDB();
-
-                alert(`Contraseña actualizada correctamente para ${g.nombre}`);
-                if (input) input.value = '';
+                alert(`Contraseña actualizada para ${g.nombre}`);
             } catch (error) {
-                console.error("Error al actualizar la contraseña del grupo en Firestore:", error);
-                alert("Hubo un error al guardar la contraseña en la nube.");
+                console.error("Error:", error);
             }
-        } else {
-            alert("No se encontró el grupo seleccionado.");
         }
       }
 
       renderAjustes() {
         const sel = document.getElementById('select-forzar-turno');
-        sel.innerHTML = this.db.grupos.map(g => `<option value="${g.id}" ${g.id === this.db.config.grupo_actual_id ? 'selected' : ''}>${g.nombre}</option>`).join('');
+        sel.innerHTML = this.db.grupos.map(g => `<option value="${g.id}" ${g.id == this.db.config.grupo_actual_id ? 'selected' : ''}>${g.nombre}</option>`).join('');
       }
 
       forzarTurno(id) {
@@ -875,12 +804,11 @@ loginSubadmin(e) {
         e.preventDefault();
         const fecha = document.getElementById('sub-rep-fecha').value;
         const comentarios = document.getElementById('sub-rep-comentarios').value;
-        
         const tareas = [];
         if(document.getElementById('tarea-1').checked) tareas.push('Barrido y limpieza general de pisos');
-        if(document.getElementById('tarea-2').checked) tareas.push('Desinfección de bancas y escritorios');
+        if(document.getElementById('tarea-2').checked) tareas.push('Recoger basura del parque de enfrente y alrededores');
         if(document.getElementById('tarea-3').checked) tareas.push('Vaciado de papeleras y botes de basura');
-        if(document.getElementById('tarea-4').checked) tareas.push('Limpieza de ventanas y puertas');
+        if(document.getElementById('tarea-4').checked) tareas.push('Limpieza de pasillos del edificio A');
 
         const nuevoReporte = {
             grupo_id: this.db.sesion.grupo_id,
@@ -893,17 +821,10 @@ loginSubadmin(e) {
 
         try {
             await addDoc(collection(db, "reportes"), nuevoReporte);
-            alert('Reporte enviado correctamente a la nube.');
+            alert('Reporte enviado correctamente.');
             e.target.reset();
-            
-            const hoy = new Date();
-            const anio = hoy.getFullYear();
-            const mes = String(hoy.getMonth() + 1).padStart(2, '0');
-            const dia = String(hoy.getDate()).padStart(2, '0');
-            document.getElementById('sub-rep-fecha').value = `${anio}-${mes}-${dia}`;
         } catch (error) {
-            console.error("Error al enviar el reporte: ", error);
-            alert("Hubo un error al conectar con la nube. Revisa tu conexión.");
+            console.error("Error:", error);
         }
       }
 
@@ -923,39 +844,21 @@ loginSubadmin(e) {
           const fechaObj = new Date(this.anioActual, this.mesActual, dia);
           const diaSemana = fechaObj.getDay();
           const fechaStr = `${this.anioActual}-${String(this.mesActual + 1).padStart(2, '0')}-${String(dia).padStart(2, '0')}`;
-          
           const aprobado = this.db.reportes.find(r => r.fecha === fechaStr && r.estado === 'aprobado');
           
           if (diaSemana === 6 || diaSemana === 0) {
             if (aprobado) {
-              const grupoAseo = this.db.grupos.find(g => g.id === aprobado.grupo_id);
-              const nombreGrupo = grupoAseo ? grupoAseo.nombre : 'Grupo';
-              grid.innerHTML += `
-                <div class="dia-celda con-aseo" title="${nombreGrupo} - Realizado">
-                  <span class="dia-celda-num">${dia}</span>
-                  <span class="dia-celda-grupo">${nombreGrupo}</span>
-                </div>`;
+              const grupoAseo = this.db.grupos.find(g => g.id == aprobado.grupo_id);
+              grid.innerHTML += `<div class="dia-celda con-aseo"><span class="dia-celda-num">${dia}</span><span class="dia-celda-grupo">${grupoAseo ? grupoAseo.nombre : ''}</span></div>`;
             } else {
-              grid.innerHTML += `
-                <div class="dia-celda pendiente-aseo" title="Pendiente de aseo">
-                  <span class="dia-celda-num">${dia}</span>
-                  <span class="dia-celda-grupo">PENDIENTE</span>
-                </div>`;
+              grid.innerHTML += `<div class="dia-celda pendiente-aseo"><span class="dia-celda-num">${dia}</span><span class="dia-celda-grupo">PEND</span></div>`;
             }
           } else {
             if (aprobado) {
-              const grupoAseo = this.db.grupos.find(g => g.id === aprobado.grupo_id);
-              const nombreGrupo = grupoAseo ? grupoAseo.nombre : 'Grupo';
-              grid.innerHTML += `
-                <div class="dia-celda con-aseo" title="${nombreGrupo}">
-                  <span class="dia-celda-num">${dia}</span>
-                  <span class="dia-celda-grupo">${nombreGrupo}</span>
-                </div>`;
+              const grupoAseo = this.db.grupos.find(g => g.id == aprobado.grupo_id);
+              grid.innerHTML += `<div class="dia-celda con-aseo"><span class="dia-celda-num">${dia}</span><span class="dia-celda-grupo">${grupoAseo ? grupoAseo.nombre : ''}</span></div>`;
             } else {
-              grid.innerHTML += `
-                <div class="dia-celda">
-                  <span class="dia-celda-num">${dia}</span>
-                </div>`;
+              grid.innerHTML += `<div class="dia-celda"><span class="dia-celda-num">${dia}</span></div>`;
             }
           }
         }
@@ -970,28 +873,19 @@ loginSubadmin(e) {
 
       async cambiarPasswordAdmin(nuevaPassword) {
         try {
-            const configRef = doc(db, "config", "ajustes_admin");
-            await setDoc(configRef, { admin_pass: nuevaPassword }, { merge: true });
-            
+            await setDoc(doc(db, "config", "ajustes_admin"), { admin_pass: nuevaPassword }, { merge: true });
             this.db.config.admin_pass = nuevaPassword;
             this.guardarDB();
-            
-            alert("Contraseña de administrador actualizada con éxito.");
+            alert("Contraseña de administrador actualizada.");
         } catch (error) {
-            console.error("Error al actualizar la contraseña:", error);
-            alert("Hubo un error al actualizar la contraseña.");
+            console.error("Error:", error);
         }
       }
 
       ejecutarCambioPassword() {
         const input = document.getElementById('nueva-pass-input');
         const nuevaPass = input.value.trim();
-        
-        if (!nuevaPass) {
-            alert('Por favor, ingresa una nueva contraseña.');
-            return;
-        }
-        
+        if (!nuevaPass) { alert('Ingrese una contraseña.'); return; }
         this.cambiarPasswordAdmin(nuevaPass);
         input.value = '';
       }
