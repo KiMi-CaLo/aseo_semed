@@ -356,16 +356,16 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, onSnapshot, doc, getDoc, updateDoc, deleteDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    const DB_KEY = 'semed_aseo_db_v12';
+    const DB_KEY = 'semed_aseo_db_v13';
 
     const firebaseConfig = {
-    apiKey: "AIzaSyC3V0RRQxFLuev2ohwGolylUoWCPXZ3_R4",
-    authDomain: "aseo-semed.firebaseapp.com",
-    projectId: "aseo-semed",
-    storageBucket: "aseo-semed.firebasestorage.app",
-    messagingSenderId: "1053610192031",
-    appId: "1:1053610192031:web:ffb2465d4ce610c10a46aa",
-    measurementId: "G-GQ8C4W3FYT"
+      apiKey: "AIzaSyC3V0RRQxFLuev2ohwGolylUoWCPXZ3_R4",
+      authDomain: "aseo-semed.firebaseapp.com",
+      projectId: "aseo-semed",
+      storageBucket: "aseo-semed.firebasestorage.app",
+      messagingSenderId: "1053610192031",
+      appId: "1:1053610192031:web:ffb2465d4ce610c10a46aa",
+      measurementId: "G-GQ8C4W3FYT"
     };
 
     const firebaseApp = initializeApp(firebaseConfig);
@@ -396,7 +396,7 @@
 
         this.sincronizarReportes();
         this.sincronizarConfigNube();
-        this.sincronizarGruposNube();
+        this.sincronizarGruposNubeCompleta();
 
         this.renderAuthMenu();
         this.renderPortada();
@@ -414,20 +414,19 @@
         });
       }
 
-      sincronizarGruposNube() {
+      sincronizarGruposNubeCompleta() {
         const gruposRef = collection(db, "grupos");
         onSnapshot(gruposRef, (snapshot) => {
-          snapshot.docs.forEach(docSnap => {
-            const data = docSnap.data();
-            const grupoLocal = this.db.grupos.find(g => String(g.id) === String(docSnap.id));
-            if (grupoLocal && data.pass) {
-              grupoLocal.pass = data.pass;
+          if (!snapshot.empty) {
+            this.db.grupos = snapshot.docs.map(docSnap => ({ id: docSnap.id, ...docSnap.data() }));
+            this.guardarLocal();
+            if (!document.getElementById('vista-panel-admin').classList.contains('oculto')) {
+              this.renderGruposAdmin();
             }
-          });
-          this.guardarLocal();
-          const contAccesos = document.getElementById('contenedor-accesos-sub');
-          if (contAccesos && !document.getElementById('vista-panel-admin').classList.contains('oculto')) {
-            this.renderAccesosSub();
+          } else if (this.db.grupos.length > 0) {
+            this.db.grupos.forEach(async (g) => {
+              await setDoc(doc(db, "grupos", String(g.id)), g);
+            });
           }
         }, (error) => {
           console.error("No se pudo sincronizar los grupos:", error);
@@ -552,8 +551,8 @@
 
       renderPortada() {
         if(this.db.grupos.length === 0) return;
-        const grupoActual = this.db.grupos.find(g => g.id === this.db.config.grupo_actual_id) || this.db.grupos[0];
-        const currentIndex = this.db.grupos.findIndex(g => g.id === grupoActual.id);
+        const grupoActual = this.db.grupos.find(g => String(g.id) === String(this.db.config.grupo_actual_id)) || this.db.grupos[0];
+        const currentIndex = this.db.grupos.findIndex(g => String(g.id) === String(grupoActual.id));
         const grupoSiguiente = this.db.grupos[(currentIndex + 1) % this.db.grupos.length];
 
         document.getElementById('titulo-seccion-actual').textContent = `TURNO ACTUAL: ${grupoActual.nombre}`;
@@ -585,9 +584,9 @@
           cont.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No hay reportes pendientes.</p>';
           return;
         }
-        cont.innerHTML = `<div class="table-container"><table><tr><th>Fecha</th><th>Grupo</th><th>Detalles</th><th>Acciones</th></tr>` +
+        cont.innerHTML = `<div class="table-container"><tr><th>Fecha</th><th>Grupo</th><th>Detalles</th><th>Acciones</th></tr>` +
           pendientes.map(r => {
-            const g = this.db.grupos.find(gr => gr.id == r.grupo_id);
+            const g = this.db.grupos.find(gr => String(gr.id) === String(r.grupo_id));
             const tareasHtml = r.tareas ? `<ul style="margin-left: 1rem; font-size: 0.8rem;">${r.tareas.map(t => `<li>${t}</li>`).join('')}</ul>` : '';
             return `<tr>
               <td>${r.fecha}</td>
@@ -610,7 +609,7 @@
                 const reporteRef = doc(db, "reportes", id);
                 await updateDoc(reporteRef, { estado: 'aprobado' });
 
-                const idx = this.db.grupos.findIndex(g => g.id == rep.grupo_id);
+                const idx = this.db.grupos.findIndex(g => String(g.id) === String(rep.grupo_id));
                 if (idx !== -1) {
                     const siguiente = this.db.grupos[(idx + 1) % this.db.grupos.length];
                     this.db.config.grupo_actual_id = siguiente.id;
@@ -645,7 +644,7 @@
         }
         cont.innerHTML = `<div class="table-container"><table><tr><th>Fecha</th><th>Grupo</th><th>Detalles</th><th>Acciones</th></tr>` +
           aprobados.map(r => {
-            const g = this.db.grupos.find(gr => gr.id == r.grupo_id);
+            const g = this.db.grupos.find(gr => String(gr.id) === String(r.grupo_id));
             const tareasHtml = r.tareas ? `<ul style="margin-left: 1rem; font-size: 0.8rem;">${r.tareas.map(t => `<li>${t}</li>`).join('')}</ul>` : '';
             return `<tr>
               <td>${r.fecha}</td>
@@ -713,7 +712,7 @@
         const modal = document.getElementById('modal-grupo');
         modal.classList.remove('oculto');
         if(id) {
-          const g = this.db.grupos.find(item => item.id == id);
+          const g = this.db.grupos.find(item => String(item.id) === String(id));
           document.getElementById('modal-grupo-titulo').textContent = 'Editar Grupo';
           document.getElementById('modal-grupo-id').value = g.id;
           document.getElementById('modal-grupo-nombre').value = g.nombre;
@@ -728,31 +727,51 @@
         document.getElementById('modal-grupo').classList.add('oculto');
       }
 
-      guardarGrupo(e) {
+      async guardarGrupo(e) {
         e.preventDefault();
         const id = document.getElementById('modal-grupo-id').value;
         const nombre = document.getElementById('modal-grupo-nombre').value;
-        if(id) {
-          const g = this.db.grupos.find(item => item.id == id);
-          if(g) g.nombre = nombre;
+        
+        let grupoId = id;
+        if (!grupoId) {
+          grupoId = this.db.grupos.length > 0 ? Math.max(...this.db.grupos.map(g => Number(g.id))) + 1 : 1;
+          const nuevoGrupo = { id: String(grupoId), nombre, pass: '1234' };
+          try {
+            await setDoc(doc(db, "grupos", String(grupoId)), nuevoGrupo);
+            this.db.grupos.push(nuevoGrupo);
+          } catch (error) {
+            console.error("Error al crear grupo:", error);
+          }
         } else {
-          const nuevoId = this.db.grupos.length > 0 ? Math.max(...this.db.grupos.map(g => g.id)) + 1 : 1;
-          this.db.grupos.push({ id: nuevoId, nombre, pass: '1234' });
+          const g = this.db.grupos.find(item => String(item.id) === String(grupoId));
+          if(g) {
+            g.nombre = nombre;
+            try {
+              await setDoc(doc(db, "grupos", String(grupoId)), g, { merge: true });
+            } catch (error) {
+              console.error("Error al actualizar grupo:", error);
+            }
+          }
         }
         this.guardarDB();
         this.cerrarModalGrupo();
         this.renderGruposAdmin();
       }
 
-      eliminarGrupo(id) {
+      async eliminarGrupo(id) {
         if(this.db.grupos.length <= 1) {
           alert('Debe haber al menos un grupo.');
           return;
         }
         if(confirm('¿Desea eliminar este grupo?')) {
-          this.db.grupos = this.db.grupos.filter(g => g.id != id);
-          this.guardarDB();
-          this.renderGruposAdmin();
+          try {
+            await deleteDoc(doc(db, "grupos", String(id)));
+            this.db.grupos = this.db.grupos.filter(g => String(g.id) !== String(id));
+            this.guardarDB();
+            this.renderGruposAdmin();
+          } catch (error) {
+            console.error("Error al eliminar grupo:", error);
+          }
         }
       }
 
@@ -776,7 +795,7 @@
         const input = document.getElementById(`pass-grupo-${id}`);
         const nuevaPass = input ? input.value.trim() : '';
         if (!nuevaPass) { alert('Ingrese una contraseña.'); return; }
-        const g = this.db.grupos.find(item => item.id == id);
+        const g = this.db.grupos.find(item => String(item.id) === String(id));
         if (g) {
             try {
                 await setDoc(doc(db, "grupos", String(id)), { id: String(id), nombre: g.nombre, pass: nuevaPass }, { merge: true });
@@ -791,11 +810,11 @@
 
       renderAjustes() {
         const sel = document.getElementById('select-forzar-turno');
-        sel.innerHTML = this.db.grupos.map(g => `<option value="${g.id}" ${g.id == this.db.config.grupo_actual_id ? 'selected' : ''}>${g.nombre}</option>`).join('');
+        sel.innerHTML = this.db.grupos.map(g => `<option value="${g.id}" ${String(g.id) === String(this.db.config.grupo_actual_id) ? 'selected' : ''}>${g.nombre}</option>`).join('');
       }
 
       forzarTurno(id) {
-        this.db.config.grupo_actual_id = parseInt(id);
+        this.db.config.grupo_actual_id = id;
         this.guardarDB();
         alert('Turno actual actualizado.');
       }
@@ -848,14 +867,14 @@
           
           if (diaSemana === 6 || diaSemana === 0) {
             if (aprobado) {
-              const grupoAseo = this.db.grupos.find(g => g.id == aprobado.grupo_id);
+              const grupoAseo = this.db.grupos.find(g => String(g.id) === String(aprobado.grupo_id));
               grid.innerHTML += `<div class="dia-celda con-aseo"><span class="dia-celda-num">${dia}</span><span class="dia-celda-grupo">${grupoAseo ? grupoAseo.nombre : ''}</span></div>`;
             } else {
               grid.innerHTML += `<div class="dia-celda pendiente-aseo"><span class="dia-celda-num">${dia}</span><span class="dia-celda-grupo">PEND</span></div>`;
             }
           } else {
             if (aprobado) {
-              const grupoAseo = this.db.grupos.find(g => g.id == aprobado.grupo_id);
+              const grupoAseo = this.db.grupos.find(g => String(g.id) === String(aprobado.grupo_id));
               grid.innerHTML += `<div class="dia-celda con-aseo"><span class="dia-celda-num">${dia}</span><span class="dia-celda-grupo">${grupoAseo ? grupoAseo.nombre : ''}</span></div>`;
             } else {
               grid.innerHTML += `<div class="dia-celda"><span class="dia-celda-num">${dia}</span></div>`;
